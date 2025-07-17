@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Missão 1 - Português</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Rowdies&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      background-image: url('https://i.ibb.co/S48HR1m3/IMG-0567.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .container {
+      position: relative;
+      max-width: 800px;
+      width: 100%;
+      overflow: visible;
+    }
+    .animar-container {
+      position: relative;
+      width: 100%;
+      opacity: 1;
+      transform: translateX(0);
+      will-change: transform, opacity;
+    }
+    .topo {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+      font-family: 'Rowdies', cursive;
+      background-color: #f6edbe;
+      padding: 10px 25px;
+      border-radius: 20px 20px 0 0;
+      font-size: 22px;
+      margin: 0 auto 5px auto;
+      text-align: center;
+      box-shadow: 0 6px 0 #e2d59b;
+      z-index: 10;
+      width: max-content;
+      min-width: 300px;
+    }
+    .card {
+      position: relative;
+      background-color: #fffde8;
+      border-radius: 30px;
+      padding: 50px 40px 30px 40px;
+      box-shadow: 0 6px 0 #e2d59b;
+      border: 6px solid #f6edbe;
+      text-align: left;
+    }
+    #contador {
+      position: absolute;
+      top: 12px;
+      left: 20px;
+      font-family: 'Rowdies', cursive;
+      background-color: #f6edbe;
+      padding: 6px 15px;
+      border-radius: 12px;
+      font-size: 24px;
+      box-shadow: 0 4px 0 #e2d59b;
+      user-select: none;
+      z-index: 20;
+      width: 60px;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    #inicio .card p,
+    #inicio .card input[type="text"] {
+      text-align: left;
+      max-width: 400px;
+      margin: 0 0 15px 0;
+      display: block;
+    }
+    #inicio .card input[type="text"] {
+      width: 100%;
+      box-sizing: border-box;
+      height: 40px;
+      font-size: 18px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+    }
+    .question {
+      margin-bottom: 30px;
+      font-size: 20px;
+      max-width: 720px;
+    }
+    label {
+      display: block;
+      background-color: #fffdf5;
+      border-radius: 18px;
+      padding: 12px 18px;
+      margin: 10px 0;
+      box-shadow: 0 6px 0 #e2d59b;
+      border: 2px solid #e2d59b;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: left;
+      max-width: 720px;
+    }
+    label:hover {
+      background-color: #fdf8d5;
+      transform: translateY(-2px);
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+    button {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      background-color: #53b6ff;
+      color: white;
+      box-shadow: 0 4px 0 #3794cc;
+    }
+    button:active {
+      background-color: #34a853;
+      box-shadow: 0 2px 0 #2e8e44;
+      transform: translateY(2px);
+    }
+    #textoResultado {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 0 #ccc;
+      text-align: left;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1, h2, p {
+      text-align: center;
+    }
+    #inicio, #quiz, #resultado {
+      max-width: 800px;
+      width: 100%;
+    }
+    .animar-container.sair-esquerda {
+      animation: sairEsquerda 1.2s forwards;
+    }
+    @keyframes sairEsquerda {
+      from {opacity: 1; transform: translateX(0);}
+      to {opacity: 0; transform: translateX(-100vw);}
+    }
+    .animar-container.sair-direita {
+      animation: sairDireita 1.2s forwards;
+    }
+    @keyframes sairDireita {
+      from {opacity: 1; transform: translateX(0);}
+      to {opacity: 0; transform: translateX(100vw);}
+    }
+    .animar-container.entrar-direita {
+      animation: entrarDireita 1.2s forwards;
+    }
+    @keyframes entrarDireita {
+      from {opacity: 0; transform: translateX(100vw);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+    .animar-container.entrar-esquerda {
+      animation: entrarEsquerda 1.2s forwards;
+    }
+    @keyframes entrarEsquerda {
+      from {opacity: 0; transform: translateX(-100vw);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+  </style>
+</head>
+<body>
+  <div id="inicio" class="container">
+    <div class="animar-container">
+      <div class="topo">Missão 1 - Português</div>
+      <div class="card">
+        <p>Digite seu nome:</p>
+        <input type="text" id="nomeAluno" />
+        <button onclick="iniciarQuiz()">Começar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quiz" class="hidden container">
+    <div class="animar-container">
+      <div class="topo">Missão 1 - Português</div>
+      <div class="card">
+        <div id="contador">1/10</div>
+        <div id="perguntaContainer"></div>
+        <button onclick="proximaPergunta()">Próxima</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultado" class="hidden container">
+    <div class="animar-container">
+      <div class="topo">Missão 1 - Português</div>
+      <div class="card">
+        <h2>Resultado</h2>
+        <div id="textoResultado"></div>
+        <a href="shortcuts://run-shortcut?name=Missões"><button>Enviar para o professor</button></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+const perguntas = [
+  { pergunta: 'O que é uma frase?', alternativas: ['Uma palavra isolada', 'Um conjunto de letras aleatórias', 'Um grupo de palavras que faz sentido', 'Um conjunto de letras repetidas'], correta: 'c' },
+  { pergunta: 'Qual das opções abaixo é uma frase com sentido completo?', alternativas: ['Céu azul bonito', 'Azul céu o está', 'O céu está azul.', 'Está azul céu'], correta: 'c' },
+  { pergunta: 'Como deve começar uma frase?', alternativas: ['Com letra minúscula', 'Com ponto final', 'Com letra maiúscula', 'Com interrogação'], correta: 'c' },
+  { pergunta: 'Qual sinal usamos para fazer uma pergunta?', alternativas: ['Ponto de interrogação (?)', 'Ponto de exclamação (!)', 'Dois pontos (:)', 'Vírgula (,)'], correta: 'a' },
+  { pergunta: 'Por que é importante organizar as palavras na frase?', alternativas: ['Para escrever mais rápido', 'Para usar muitas palavras', 'Para a frase ter sentido', 'Para deixar a frase bonita'], correta: 'c' },
+  { pergunta: 'O que é um adjetivo?', alternativas: ['Um nome de pessoa', 'Uma palavra que descreve algo', 'Um verbo de ação', 'Um sinal de pontuação'], correta: 'b' },
+  { pergunta: 'Qual dessas palavras é um adjetivo?', alternativas: ['Correr', 'Menino', 'Bola', 'Alegre'], correta: 'd' },
+  { pergunta: 'Na frase “A casa é grande”, qual é o adjetivo?', alternativas: ['A', 'Casa', 'Grande', 'É'], correta: 'c' },
+  { pergunta: 'Para que usamos os adjetivos?', alternativas: ['Para formar perguntas', 'Para criar rimas', 'Para descrever pessoas ou coisas', 'Para contar histórias'], correta: 'c' },
+  { pergunta: 'O que acontece quando colocamos um adjetivo na frase?', alternativas: ['A frase fica mais longa', 'A frase fica sem sentido', 'A frase fica com mais informação', 'A frase termina com exclamação'], correta: 'c' }
+];
+
+let nomeAluno = '';
+let respostasUsuario = [];
+let perguntaAtual = 0;
+
+function iniciarQuiz() {
+  nomeAluno = document.getElementById('nomeAluno').value.trim();
+  if (nomeAluno === '') {
+    alert('Digite seu nome!');
+    return;
+  }
+  document.getElementById('inicio').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  mostrarPergunta();
+}
+
+function mostrarPergunta() {
+  const container = document.getElementById('perguntaContainer');
+  const contador = document.getElementById('contador');
+  const p = perguntas[perguntaAtual];
+  contador.innerText = `${perguntaAtual + 1}/${perguntas.length}`;
+  let html = `<div class="question"><p>${p.pergunta}</p>`;
+  ['a', 'b', 'c', 'd'].forEach((letra, i) => {
+    html += `<label><input type="radio" name="resposta" value="${letra}" /> ${p.alternativas[i]}</label>`;
+  });
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function proximaPergunta() {
+  const selecionado = document.querySelector('input[name="resposta"]:checked');
+  if (!selecionado) {
+    alert('Escolha uma resposta antes de continuar.');
+    return;
+  }
+
+  respostasUsuario.push(selecionado.value);
+
+  if (perguntaAtual === perguntas.length - 1) {
+    finalizarQuiz();
+    return;
+  }
+
+  const animarContainer = document.querySelector('#quiz .animar-container');
+  animarContainer.classList.add('sair-esquerda');
+  animarContainer.addEventListener('animationend', function handler() {
+    animarContainer.removeEventListener('animationend', handler);
+    perguntaAtual++;
+    mostrarPergunta();
+    animarContainer.classList.remove('sair-esquerda');
+    animarContainer.classList.add('entrar-direita');
+    animarContainer.addEventListener('animationend', function handler2() {
+      animarContainer.removeEventListener('animationend', handler2);
+      animarContainer.classList.remove('entrar-direita');
+    });
+  });
+}
+
+function finalizarQuiz() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('resultado').classList.remove('hidden');
+
+  let acertos = 0;
+  let resultado = `Resultado de Missão 1 - Português\n`;
+  resultado += `Aluno: ${nomeAluno}\n`;
+  resultado += `Data/Hora: ${new Date().toLocaleString()}\n\n`;
+
+  perguntas.forEach((p, i) => {
+    const correta = p.correta;
+    const marcada = respostasUsuario[i];
+    const corretaIndex = ['a', 'b', 'c', 'd'].indexOf(correta);
+    const marcadaIndex = ['a', 'b', 'c', 'd'].indexOf(marcada);
+    const acertou = marcada === correta;
+    if (acertou) acertos++;
+    resultado += `Questão ${i + 1}\n`;
+    resultado += `Alternativa marcada: ${marcada}) ${p.alternativas[marcadaIndex] || 'nenhuma'}\n`;
+    resultado += `Correta: ${correta}) ${p.alternativas[corretaIndex]}\n`;
+    resultado += `Resultado: ${acertou ? 'Correta' : 'Incorreta'}\n\n`;
+  });
+
+  const percentual = ((acertos / perguntas.length) * 100).toFixed(0);
+  resultado += `Pontuação: ${acertos}/10 (${percentual}%)`;
+
+  navigator.clipboard.writeText(resultado).catch(() => {});
+  document.getElementById('textoResultado').innerText = resultado;
+}
+</script>
+</body>
+</html>
